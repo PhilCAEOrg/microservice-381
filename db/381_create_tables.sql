@@ -8,7 +8,7 @@
 --
 CREATE TABLE caeschema.tab (
   item VARCHAR(255) ,
-  id INTEGER ,
+  id INTEGER NOT NULL AUTO_INCREMENT,
 CONSTRAINT id_PK PRIMARY KEY (id)
  
 );
