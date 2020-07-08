@@ -114,7 +114,18 @@ public class todo extends RESTService {
     JSONObject payload_JSON = (JSONObject) JSONValue.parse(payload);
 
 
-
+try { 
+      Connection c = dbm.getConnection(); 
+ 
+      PreparedStatement s = c.prepareStatement("INSERT INTO tab (item) VALUES (?);"); 
+      s.setString(1, (String) payload_JSON.get("item")); 
+ 
+      s.executeUpdate(); 
+      s.close(); 
+      return Response.status(HttpURLConnection.HTTP_OK).entity(payload_JSON.toJSONString()).build();
+    } catch (SQLException e) { 
+      return Response.status(500).entity("SQLException: " + e.getMessage()).build();
+    }
 
      
     
