@@ -165,7 +165,8 @@ try {
       return Response.status(200).entity(a.toJSONString()).build();
     } catch (SQLException e) { 
       return Response.status(500).entity("SQLException: " + e.getMessage()).build();
-    }
+    } 
+
     
   }
 
