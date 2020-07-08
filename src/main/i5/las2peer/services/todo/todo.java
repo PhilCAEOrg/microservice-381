@@ -153,7 +153,19 @@ try {
 
 
 
-
+try { 
+      Connection c = dbm.getConnection(); 
+      PreparedStatement s = c.prepareStatement("SELECT * FROM tab;"); 
+      ResultSet queryResult = s.executeQuery(); 
+  
+      JSONArray a = new JSONArray();
+      while(queryResult.next()) {  
+        a.add(queryResult.getString("item"));
+      } 
+      return Response.status(200).entity(a.toJSONString()).build();
+    } catch (SQLException e) { 
+      return Response.status(500).entity("SQLException: " + e.getMessage()).build();
+    }
     
   }
 
